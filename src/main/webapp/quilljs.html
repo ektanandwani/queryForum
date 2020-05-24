@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quill JS</title>
+    <!--<script src="https://cdn.quilljs.com/1.1.3/quill.js"></script>
+    <script src="https://cdn.quilljs.com/1.1.3/quill.min.js"></script>
+
+    <link href="https://cdn.quilljs.com/1.1.3/quill.snow.css" rel="stylesheet">
+    <link href="https://cdn.quilljs.com/1.1.3/quill.bubble.css" rel="stylesheet">
+-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Include stylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.6/quill.core.css">
+
+    <script>
+        var quill = new Quill('#editor',{
+            theme:'snow'
+        });
+    </script>
+</head>
+<body>
+<div id="toolbar"></div>
+<div id="editor"></div>
+<div id="editor2"></div>
+
+<button id="saveDelta">Save Delta</button>
+
+<script>
+    var toolbarOptions = [
+        ['bold','italic','underline','strike'],
+        ['blockquote','code-block'],
+        [{'header':[1,2,3,4,5,6,false]}],
+        [{'list':'ordered'},{'list':'bullet'}],
+        [{'script':'sub'},{'script':'super'}],
+        [{'indent':'-1'},{'indent':'+1'}],
+        [{'direction':'rtl'}],
+        ['link','image','formula'],
+        [{'color':[]},{'background':[]}],
+        [{'align':[]}]
+    ];
+    var quill = new Quill('#editor',{
+        modules: {
+            toolbar:toolbarOptions
+        },
+        theme: 'snow'
+    });
+
+    var quill2 = new Quill('#editor2',{
+    });
+   /* var ques_data='{\"ops\":[{\"insert\":\"what is corona death rate?\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"insert\":\"why is it so large??\"},{\"attributes\":{\"list\":\"ordered\"},\"insert\":\"\\n\"},{\"attributes\":{\"bold\":true},\"insert\":\"\\t\\tThere is no Vaccine for corona disease.\"},{\"insert\":\"\\n\"}]}';
+    prompt(ques_data);
+    var questiondelta = JSON.parse(ques_data);
+    quill2.setContent(questiondelta);*/
+
+
+ /*  var api="webapi/question/get/2";
+        $.get(api, function (question, status) {
+        if (status == "success") {
+            //add question data to various html elements
+            prompt(question.q_desc);
+
+            var questiondelta = JSON.parse(question.q_desc);
+            quill2.setContent(questiondelta);
+        }
+    });*/
+
+   $('#saveDelta').click(function () {
+        /*var delta=quill.getContents();
+        var stringdata=JSON.stringify(delta);
+        stringdata = escape(stringdata);
+        prompt(stringdata);
+        stringdata =unescape(stringdata);
+        prompt(stringdata)*/
+        var str="%7B%22ops%22%3A%5B%7B%22insert%22%3A%22One%22%7D%2C%7B%22attributes%22%3A%7B%22list%22%3A%22ordered%22%7D%2C%22insert%22%3A%22%5Cn%22%7D%2C%7B%22insert%22%3A%22two%22%7D%2C%7B%22attributes%22%3A%7B%22list%22%3A%22ordered%22%7D%2C%22insert%22%3A%22%5Cn%22%7D%2C%7B%22insert%22%3A%22three%22%7D%2C%7B%22attributes%22%3A%7B%22list%22%3A%22ordered%22%7D%2C%22insert%22%3A%22%5Cn%22%7D%5D%7D";
+        str = unescape(str);
+        prompt(str);
+        var delta2=JSON.parse(str);
+        quill2.setContents(delta2);
+        //prompt(delta);
+
+    });
+
+
+
+</script>
+
+</body>
+</html>

@@ -11,6 +11,7 @@ import javax.ws.rs.core.NewCookie;
 import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @Path("user")
 public class UserController {
@@ -49,38 +50,12 @@ public class UserController {
             //NewCookie cookie = new NewCookie("queryForum_username", username);
 
 
-
-            /**
-             * Create a new instance.
-             *
-             * @param name    the name of the cookie.
-             * @param value   the value of the cookie.
-             * @param path    the URI path for which the cookie is valid.
-             * @param domain  the host domain for which the cookie is valid.
-             * @param comment the comment.
-             * @param maxAge  the maximum age of the cookie in seconds.
-             * @param secure  specifies whether the cookie will only be sent over a secure connection.
-             * @throws IllegalArgumentException if name is {@code null}.
-             */
-
-              /*
-    public NewCookie(String name,
-                    String value,
-                    String path,
-                    String domain,
-                    String comment,
-            int maxAge,
-            boolean secure) {
-                this(name, value, path, domain, DEFAULT_VERSION, comment, maxAge, null, secure, false);
-            }*/
-
-
             NewCookie cookie1 = new NewCookie("queryForum_username",user.getUserName(),"/","localhost","my first cookie",30*60,false);
             NewCookie cookie2 = new NewCookie("queryForum_userid",""+user.getUserId(),"/","localhost","my first cookie",30*60,false);
             NewCookie cookie3 = new NewCookie("queryForum_useremail",user.getEmail(),"/","localhost","my first cookie",30*60,false);
             NewCookie cookie4 = new NewCookie("queryForum_name",user.getName(),"/","localhost","my first cookie",30*60,false);
 
-            return Response.seeOther(new URI("/queryForum_war/account.html")).cookie(cookie1,cookie2,cookie3,cookie4).build();
+            return Response.seeOther(new URI("/queryForum_war/forum.html")).cookie(cookie1,cookie2,cookie3,cookie4).build();
 
         }
 
@@ -99,4 +74,14 @@ public class UserController {
 
 
     }
+    @GET
+    @Path("/getall")
+    @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+    public Response listDomains() {
+        System.out.println("called");
+        List<User> users = userService.findAll();
+
+        return Response.ok().entity(users).build();
+    }
+
 }
