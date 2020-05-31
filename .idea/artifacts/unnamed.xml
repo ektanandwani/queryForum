@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="unnamed">
+    <output-path>$PROJECT_DIR$/target/unnamed</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="queryForum/web/Web" />
+    </root>
+  </artifact>
+</component>

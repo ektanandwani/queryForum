@@ -14,7 +14,7 @@ public class SessionUtil {
     static {
         Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         try {
-            Configuration configuration = new Configuration();
+            Configuration configuration = new Configuration().setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
             configuration.addAnnotatedClass(User.class).addAnnotatedClass(Tag.class)
                     .addAnnotatedClass(Answer.class).addAnnotatedClass(AnswerVote.class)
                     .addAnnotatedClass(Question.class).addAnnotatedClass(QuestionVote.class);

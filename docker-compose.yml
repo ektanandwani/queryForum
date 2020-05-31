@@ -1,0 +1,35 @@
+version: "3"
+services:
+  mysql-docker-container:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: queryForum
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - 3307:3306
+    expose:
+      - 3306
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - net
+
+  #    command: mysql_upgrade
+
+  java-war-application:
+    #    image: query_forum:latest
+    build: ./
+    restart: always
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8056:8080
+    expose:
+      - 8080
+    networks:
+      - net
+#    command: java -jar queryForum.war
+#
+networks:
+  net:
