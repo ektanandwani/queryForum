@@ -11,16 +11,6 @@ function  addQuestion() {
     //stringdata = escape(stringdata);
     fdata.append("q_desc",stringdata);
 
-
-    /*$('#saveDelta').click(function () {
-        var delta=quill.getContents();
-        var stringdata=JSON.stringify(delta);
-        prompt(stringdata);
-        var delta2=JSON.parse(stringdata);
-        quill2.setContents(delta2);
-        //prompt(delta);
-
-    });*/
     $.ajax({
         type: "POST",
         enctype: 'multipart/form-data',
@@ -33,9 +23,8 @@ function  addQuestion() {
         timeout: 600000,
         success: function (data) {
 
-            //$("#result").text(data);
-           // alert("Added Success");
             console.log("SUCCESS : ", data);
+            window.location.href = "/queryForum_war/forum.html";
 
         },
         error: function (e) {
